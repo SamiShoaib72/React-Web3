@@ -151,7 +151,7 @@ export default function AdminDashboard() {
 
           <div className="card bg-dark border-secondary">
             <div className="card-header border-bottom-0 pb-0 bg-dark text-light">
-              <h5 className="mb-3">Active Inventory</h5>
+              <h5 className="mb-3 fw-bold">Active Inventory</h5>
             </div>
             <div className="table-responsive">
               <table className="table table-hover align-middle mb-0 text-light">
@@ -229,12 +229,12 @@ export default function AdminDashboard() {
       )}
 
       {activeTab === 'orders' && (
-        <div className="card bg-dark border-secondary">
-          <div className="card-header border-bottom-0 pb-0 bg-dark text-light">
+        <div className="card" style={{ backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border)' }}>
+          <div className="card-header border-bottom-0 pb-0" style={{ color: 'var(--tv-text)' }}>
             <h5 className="mb-3 fw-bold">Recent Orders</h5>
           </div>
           <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0 text-light">
+            <table className="table table-hover align-middle mb-0">
               <thead>
                 <tr>
                   <th>Order ID</th>
@@ -282,12 +282,12 @@ export default function AdminDashboard() {
       )}
 
       {activeTab === 'users' && (
-        <div className="card bg-dark border-secondary">
-          <div className="card-header border-bottom-0 pb-0 bg-dark text-light">
+        <div className="card" style={{ backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border)' }}>
+          <div className="card-header border-bottom-0 pb-0" style={{ color: 'var(--tv-text)' }}>
             <h5 className="mb-3 fw-bold">Registered Users</h5>
           </div>
           <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0 text-light">
+            <table className="table table-hover align-middle mb-0">
               <thead>
                 <tr>
                   <th>User ID</th>
