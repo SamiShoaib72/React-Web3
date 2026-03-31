@@ -74,12 +74,12 @@ export default function Home() {
       </div>
 
       {/* Featured Products Section */}
-      <div id="shop-section" className="container py-4 mt-3 mb-4 rounded-4" style={{ background: 'linear-gradient(135deg, #1c212eff 0%, #010e30ff 100%)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)', padding: '5rem' }}>
+      <div id="shop-section" className="container py-4 mt-3 mb-4 rounded-4 p-3 p-md-5" style={{ background: 'linear-gradient(135deg, #1c212eff 0%, #010e30ff 100%)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
         <div className="d-flex justify-content-between align-items-center mb-5 border-bottom pb-1" style={{ borderColor: 'var(--tv-border)' }}>
           <h2 className="display-6 fw-bold m-0 text-white"><span className="text-warning">&bull;</span> Featured Kicks</h2>
         </div>
 
-        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-5">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
           {products.slice(0, 6).map(product => (
             <div key={product.id} className="col">
               <ProductCard product={product} />

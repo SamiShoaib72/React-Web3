@@ -71,12 +71,12 @@ export default function AdminDashboard() {
   return (
     <div className="container py-4">
       <div className="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3" style={{ borderColor: 'var(--tv-border)' }}>
-        <h2 className="m-0 d-flex align-items-center gap-2">
-          <Settings className="text-primary" /> Admin Control Panel
+        <h2 className="m-0 d-flex align-items-center gap-2 fw-bold text-dark">
+          <Settings className="text-warning" /> Admin Control Panel
         </h2>
         {activeTab === 'inventory' && (
           <button
-            className="btn btn-primary d-flex align-items-center gap-2"
+            className="btn btn-warning fw-bold d-flex align-items-center gap-2 rounded-pill px-4"
             onClick={() => setShowAddForm(!showAddForm)}
           >
             <PlusCircle size={18} /> Add Shoe
@@ -105,9 +105,9 @@ export default function AdminDashboard() {
       {activeTab === 'inventory' && (
         <>
           {showAddForm && (
-            <div className="card mb-4 border-primary">
-              <div className="card-header bg-primary text-white">
-                <h5 className="mb-0">Add New Shoe Listing</h5>
+            <div className="card mb-4 border-0" style={{ backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border) !important', boxShadow: '0 4px 15px rgba(0,0,0,0.3)' }}>
+              <div className="card-header text-white border-bottom" style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'var(--tv-border) !important' }}>
+                <h5 className="mb-0 fw-bold">Add New Shoe Listing</h5>
               </div>
               <div className="card-body">
                 <form onSubmit={handleAddSubmit}>
@@ -149,12 +149,12 @@ export default function AdminDashboard() {
             </div>
           )}
 
-          <div className="card">
-            <div className="card-header border-bottom-0 pb-0">
+          <div className="card bg-dark border-secondary">
+            <div className="card-header border-bottom-0 pb-0 bg-dark text-light">
               <h5 className="mb-3">Active Inventory</h5>
             </div>
             <div className="table-responsive">
-              <table className="table table-hover align-middle mb-0">
+              <table className="table table-hover align-middle mb-0 text-light">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -229,12 +229,12 @@ export default function AdminDashboard() {
       )}
 
       {activeTab === 'orders' && (
-        <div className="card">
-          <div className="card-header border-bottom-0 pb-0">
-            <h5 className="mb-3">Recent Orders</h5>
+        <div className="card bg-dark border-secondary">
+          <div className="card-header border-bottom-0 pb-0 bg-dark text-light">
+            <h5 className="mb-3 fw-bold">Recent Orders</h5>
           </div>
           <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
+            <table className="table table-hover align-middle mb-0 text-light">
               <thead>
                 <tr>
                   <th>Order ID</th>
@@ -282,12 +282,12 @@ export default function AdminDashboard() {
       )}
 
       {activeTab === 'users' && (
-        <div className="card">
-          <div className="card-header border-bottom-0 pb-0">
-            <h5 className="mb-3">Registered Users</h5>
+        <div className="card bg-dark border-secondary">
+          <div className="card-header border-bottom-0 pb-0 bg-dark text-light">
+            <h5 className="mb-3 fw-bold">Registered Users</h5>
           </div>
           <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
+            <table className="table table-hover align-middle mb-0 text-light">
               <thead>
                 <tr>
                   <th>User ID</th>
@@ -317,7 +317,7 @@ export default function AdminDashboard() {
                     </td>
                     <td data-label="Joined" className="small">{u.joined}</td>
                     <td data-label="Actions" className="text-end">
-                      <button className="btn btn-sm btn-outline-light disabled">Manage</button>
+                      <button className="btn btn-sm btn-outline-dark">Manage</button>
                     </td>
                   </tr>
                 ))}

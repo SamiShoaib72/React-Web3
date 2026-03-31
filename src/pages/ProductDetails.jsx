@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
 import { ShoppingCart, Heart, ArrowLeft, ShieldCheck, Truck } from 'lucide-react';
+import ProductCard from '../components/ProductCard';
 import { useState } from 'react';
 
 export default function ProductDetails() {
@@ -87,6 +88,23 @@ export default function ProductDetails() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      
+      {/* Related Products */}
+      <div className="mt-5 pt-5 border-top" style={{ borderColor: 'var(--tv-border) !important' }}>
+        <h3 className="fw-bold mb-4 d-flex align-items-center gap-2">
+          <span className="text-warning">&bull;</span> You May Also Like
+        </h3>
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 text-start">
+          {products
+            .filter(p => p.category === product.category && p.id !== product.id)
+            .slice(0, 4)
+            .map(relatedProduct => (
+              <div key={relatedProduct.id} className="col">
+                <ProductCard product={relatedProduct} />
+              </div>
+            ))}
         </div>
       </div>
     </div>

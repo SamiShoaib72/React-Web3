@@ -71,9 +71,9 @@ export default function Payment() {
 
       <div className="row g-5">
         <div className="col-lg-8">
-          <div className="card mb-4 border-0" style={{ boxShadow: '0 4px 15px rgba(0,0,0,0.2)' }}>
-            <div className="card-header bg-primary text-white">
-              <h5 className="mb-0">Shipping & Billing Information</h5>
+          <div className="card mb-4 border-0" style={{ backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border) !important', boxShadow: '0 4px 15px rgba(0,0,0,0.3)' }}>
+            <div className="card-header text-white border-bottom" style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'var(--tv-border) !important' }}>
+              <h5 className="mb-0 fw-bold">Shipping & Billing Information</h5>
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit}>
@@ -134,9 +134,9 @@ export default function Payment() {
         </div>
 
         <div className="col-lg-4">
-          <div className="card sticky-top border-0" style={{ top: '100px', boxShadow: '0 4px 15px rgba(0,0,0,0.2)', zIndex: '900' }}>
-            <div className="card-header bg-transparent border-bottom">
-              <h5 className="mb-0">Order Summary</h5>
+          <div className="card sticky-top border-0" style={{ top: '100px', backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border) !important', boxShadow: '0 4px 15px rgba(0,0,0,0.3)', zIndex: '900' }}>
+            <div className="card-header text-white border-bottom" style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'var(--tv-border) !important' }}>
+              <h5 className="mb-0 fw-bold">Order Summary</h5>
             </div>
             <div className="card-body">
               <ul className="list-unstyled mb-4">

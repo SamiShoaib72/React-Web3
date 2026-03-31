@@ -38,11 +38,11 @@ export default function Cart() {
                 </div>
 
                 <div className="d-flex align-items-center gap-2">
-                  <button className="btn btn-outline-dark btn-sm px-2" onClick={() => updateQuantity(product.id, quantity - 1)}>
+                  <button className="btn btn-outline-light btn-sm px-2" onClick={() => updateQuantity(product.id, quantity - 1)}>
                     <Minus size={15} />
                   </button>
                   <span className="fw-bold px-2">{quantity}</span>
-                  <button className="btn btn-outline-dark btn-sm px-2" onClick={() => updateQuantity(product.id, quantity + 1)}>
+                  <button className="btn btn-outline-light btn-sm px-2" onClick={() => updateQuantity(product.id, quantity + 1)}>
                     <Plus size={15} />
                   </button>
                 </div>

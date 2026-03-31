@@ -14,10 +14,10 @@ export default function Navigation() {
   const cartItemsCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className="navbar navbar-expand-lg sticky-top px-3">
+    <nav className="navbar navbar-expand-lg sticky-top px-2 px-md-3">
       <div className="container-fluid">
         <Link 
-          className="navbar-brand d-flex align-items-center fw-bold text-uppercase fs-4" 
+          className="navbar-brand d-flex align-items-center fw-bold text-uppercase fs-4 m-0" 
           style={{letterSpacing: '1px'}} 
           to="/"
           onClick={() => window.scrollTo(0, 0)}
@@ -26,44 +26,47 @@ export default function Navigation() {
           ADRINO
         </Link>
         
-        <button className="navbar-toggler btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span className="navbar-toggler-icon" style={{filter: 'invert(1)'}}></span>
-        </button>
+        <div className="d-flex align-items-center gap-2 gap-md-3 order-lg-last">
+          {/* Icons always visible outside collapse on mobile */}
+          <Link to="/wishlist" className="nav-link position-relative theme-link p-2">
+            <Heart size={20} />
+            {wishlist.length > 0 && (
+              <span className="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger" style={{fontSize: '0.55rem', padding: '0.25em 0.5em'}}>
+                {wishlist.length}
+              </span>
+            )}
+          </Link>
+          
+          <Link to="/cart" className="nav-link position-relative theme-link p-2">
+            <ShoppingCart size={20} />
+            {cartItemsCount > 0 && (
+              <span className="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-primary" style={{fontSize: '0.55rem', padding: '0.25em 0.5em'}}>
+                {cartItemsCount}
+              </span>
+            )}
+          </Link>
+
+          <button className="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span className="navbar-toggler-icon" style={{filter: 'invert(1)', width: '1.5rem', height: '1.5rem'}}></span>
+          </button>
+        </div>
         
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 mt-3 mt-lg-0 pt-2 pt-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/shop">Shop Collection</Link>
+              <Link className="nav-link px-3" to="/shop">Shop Collection</Link>
             </li>
             {user?.role === 'admin' && (
               <li className="nav-item">
-                <Link className="nav-link" to="/admin">Admin Dashboard</Link>
+                <Link className="nav-link px-3" to="/admin">Admin Dashboard</Link>
               </li>
             )}
           </ul>
           
-          <div className="d-flex align-items-center gap-3">
-            <Link to="/wishlist" className="nav-link position-relative theme-link">
-              <Heart size={20} />
-              {wishlist.length > 0 && (
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{fontSize: '0.6rem'}}>
-                  {wishlist.length}
-                </span>
-              )}
-            </Link>
-            
-            <Link to="/cart" className="nav-link position-relative theme-link">
-              <ShoppingCart size={20} />
-              {cartItemsCount > 0 && (
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style={{fontSize: '0.6rem'}}>
-                  {cartItemsCount}
-                </span>
-              )}
-            </Link>
-
+          <div className="d-flex flex-column flex-lg-row align-items-lg-center gap-3 px-3 px-lg-0 pb-3 pb-lg-0">
             {user ? (
               <div className="dropdown">
-                <button className="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <button className="btn btn-outline-light btn-sm dropdown-toggle w-100 w-lg-auto" type="button" data-bs-toggle="dropdown">
                   {user.email}
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end bg-dark border-secondary">
@@ -71,9 +74,9 @@ export default function Navigation() {
                 </ul>
               </div>
             ) : (
-              <div className="d-flex gap-2">
-                <Link className="btn btn-outline-light btn-sm" to="/login">Log In</Link>
-                <Link className="btn btn-primary btn-sm" to="/signup">Sign Up</Link>
+              <div className="d-flex gap-2 w-100 w-lg-auto">
+                <Link className="btn btn-outline-light btn-sm flex-grow-1" to="/login">Log In</Link>
+                <Link className="btn btn-primary btn-sm flex-grow-1" to="/signup">Sign Up</Link>
               </div>
             )}
           </div>
