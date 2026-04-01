@@ -41,11 +41,11 @@ export default function Cart() {
                   <div className="row align-items-center g-3">
                     <div className="col-auto">
                       <Link to={`/product/${product.id}`}>
-                        <img 
-                          src={product.image} 
-                          alt={product.name} 
+                        <img
+                          src={product.image}
+                          alt={product.name}
                           className="rounded-3 object-fit-cover shadow-sm"
-                          style={{ width: 100, height: 100 }} 
+                          style={{ width: 100, height: 100 }}
                         />
                       </Link>
                     </div>
@@ -59,19 +59,19 @@ export default function Cart() {
                           <Trash2 size={20} />
                         </button>
                       </div>
-                      <small className="text-muted d-block mb-2">{product.category}</small>
-                      
+                      <small className="text-white d-block mb-2">{product.category}</small>
+
                       <div className="d-flex align-items-center justify-content-between mt-auto">
-                        <div className="d-flex align-items-center gap-2 bg-dark bg-opacity-25 rounded-pill p-1 border border-secondary border-opacity-25">
-                          <button className="btn btn-sm rounded-circle d-flex align-items-center justify-content-center p-1 hover-bg-light" style={{ width: 28, height: 28 }} onClick={() => updateQuantity(product.id, quantity - 1)}>
+                        <div className="d-flex align-items-center gap-2 bg-light bg-opacity-25 rounded-pill p-1 border border-secondary border-opacity-25">
+                          <button className="btn btn-sm rounded-circle d-flex align-items-center bg-light justify-content-center p-1 hover-bg-light" style={{ width: 28, height: 28 }} onClick={() => updateQuantity(product.id, quantity - 1)}>
                             <Minus size={14} />
                           </button>
                           <span className="fw-bold px-2 small">{quantity}</span>
-                          <button className="btn btn-sm rounded-circle d-flex align-items-center justify-content-center p-1 hover-bg-light" style={{ width: 28, height: 28 }} onClick={() => updateQuantity(product.id, quantity + 1)}>
+                          <button className="btn btn-sm rounded-circle d-flex align-items-center bg-light justify-content-center p-1 hover-bg-light" style={{ width: 28, height: 28 }} onClick={() => updateQuantity(product.id, quantity + 1)}>
                             <Plus size={14} />
                           </button>
                         </div>
-                        
+
                         <div className="text-end">
                           <div className="price-tag fs-5">${(product.price * quantity).toFixed(2)}</div>
                           {quantity > 1 && <small className="text-muted d-block x-small">${product.price.toFixed(2)} each</small>}
@@ -106,9 +106,9 @@ export default function Cart() {
               </div>
 
               <button className="btn btn-success w-100 py-3 fw-bold rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-2 mb-3" onClick={() => navigate('/payment')}>
-                 Proceed to Checkout
+                Proceed to Checkout
               </button>
-              
+
               <Link to="/shop" className="btn btn-outline-secondary w-100 py-2 border-secondary border-opacity-50 small" style={{ color: 'var(--tv-text)' }}>
                 Continue Shopping
               </Link>
