@@ -71,62 +71,67 @@ export default function Payment() {
 
       <div className="row g-5">
         <div className="col-lg-8">
-          <div className="card mb-4 border-0" style={{ backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border) !important', boxShadow: '0 4px 15px rgba(0,0,0,0.3)' }}>
-            <div className="card-header text-white border-bottom" style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'var(--tv-border) !important' }}>
-              <h5 className="mb-0 fw-bold">Shipping & Billing Information</h5>
+          <div className="card border-0 shadow-sm overflow-hidden" style={{ backgroundColor: 'var(--tv-panel)' }}>
+            <div className="card-header border-bottom border-secondary border-opacity-25 p-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+              <h5 className="mb-0 fw-bold" style={{ color: 'var(--tv-text)' }}>Shipping & Billing Information</h5>
             </div>
-            <div className="card-body">
+            <div className="card-body p-4">
               <form onSubmit={handleSubmit}>
-                <div className="row g-3 mb-4">
+                <div className="row g-3">
                   <div className="col-md-6">
-                    <label className="form-label text-muted small">Full Name</label>
-                    <input type="text" className="form-control" name="fullName" value={formData.fullName} onChange={handleChange} required />
+                    <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Full Name</label>
+                    <input type="text" className="form-control py-2" name="fullName" value={formData.fullName} onChange={handleChange} required placeholder="John Doe" />
                   </div>
                   <div className="col-md-6">
-                    <label className="form-label text-muted small">Email Address</label>
-                    <input type="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
+                    <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Email Address</label>
+                    <input type="email" className="form-control py-2" name="email" value={formData.email} onChange={handleChange} required placeholder="john@example.com" />
                   </div>
                   <div className="col-12">
-                    <label className="form-label text-muted small">Street Address</label>
-                    <input type="text" className="form-control" name="address" value={formData.address} onChange={handleChange} required />
+                    <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Street Address</label>
+                    <input type="text" className="form-control py-2" name="address" value={formData.address} onChange={handleChange} required placeholder="123 Main St" />
                   </div>
                   <div className="col-md-6">
-                    <label className="form-label text-muted small">City</label>
-                    <input type="text" className="form-control" name="city" value={formData.city} onChange={handleChange} required />
+                    <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>City</label>
+                    <input type="text" className="form-control py-2" name="city" value={formData.city} onChange={handleChange} required placeholder="New York" />
                   </div>
                   <div className="col-md-6">
-                    <label className="form-label text-muted small">Zip Code</label>
-                    <input type="text" className="form-control" name="zipCode" value={formData.zipCode} onChange={handleChange} required />
+                    <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Zip Code</label>
+                    <input type="text" className="form-control py-2" name="zipCode" value={formData.zipCode} onChange={handleChange} required placeholder="10001" />
                   </div>
                 </div>
 
-                <div className="border-top pt-4 mt-4" style={{ borderColor: 'var(--tv-border) !important' }}>
-                  <h5 className="mb-3 d-flex align-items-center gap-2">Payment Details <ShieldCheck size={18} className="text-success" /></h5>
+                <div className="mt-5 pt-4 border-top border-secondary border-opacity-25">
+                  <h5 className="mb-4 d-flex align-items-center gap-2" style={{ color: 'var(--tv-text)' }}>
+                    Payment Details <ShieldCheck size={20} className="text-success" />
+                  </h5>
                   <div className="row g-3">
                     <div className="col-12">
-                      <label className="form-label text-muted small">Card Number</label>
-                      <input type="text" className="form-control" placeholder="0000 0000 0000 0000" name="cardNumber" value={formData.cardNumber} onChange={handleChange} required />
+                      <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Card Number</label>
+                      <div className="input-group">
+                        <span className="input-group-text bg-transparent border-secondary border-opacity-25" style={{ color: 'var(--tv-text)' }}><CreditCard size={18} /></span>
+                        <input type="text" className="form-control py-2 border-start-0" placeholder="0000 0000 0000 0000" name="cardNumber" value={formData.cardNumber} onChange={handleChange} required />
+                      </div>
                     </div>
                     <div className="col-md-6">
-                      <label className="form-label text-muted small">Expiry Date</label>
-                      <input type="text" className="form-control" placeholder="MM/YY" name="expiry" value={formData.expiry} onChange={handleChange} required />
+                      <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Expiry Date</label>
+                      <input type="text" className="form-control py-2" placeholder="MM/YY" name="expiry" value={formData.expiry} onChange={handleChange} required />
                     </div>
                     <div className="col-md-6">
-                      <label className="form-label text-muted small">CVV</label>
-                      <input type="text" className="form-control" placeholder="123" name="cvv" value={formData.cvv} onChange={handleChange} required />
+                      <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>CVV Code</label>
+                      <input type="password" maxlength="3" className="form-control py-2" placeholder="***" name="cvv" value={formData.cvv} onChange={handleChange} required />
                     </div>
                   </div>
                 </div>
 
                 <button 
                   type="submit" 
-                  className="btn btn-success btn-lg w-100 mt-5 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2"
+                  className="btn btn-success btn-lg w-100 mt-5 py-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2 rounded-3"
                   disabled={isProcessing}
                 >
                   {isProcessing ? (
                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                  ) : <CreditCard size={20} />}
-                  {isProcessing ? 'Processing Payment...' : `Pay $${total.toFixed(2)}`}
+                  ) : <CheckCircle size={22} />}
+                  {isProcessing ? 'Verifying Transaction...' : `Confirm & Pay $${total.toFixed(2)}`}
                 </button>
               </form>
             </div>
@@ -134,36 +139,50 @@ export default function Payment() {
         </div>
 
         <div className="col-lg-4">
-          <div className="card sticky-top border-0" style={{ top: '100px', backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border) !important', boxShadow: '0 4px 15px rgba(0,0,0,0.3)', zIndex: '900' }}>
-            <div className="card-header text-white border-bottom" style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'var(--tv-border) !important' }}>
-              <h5 className="mb-0 fw-bold">Order Summary</h5>
+          <div className="card border-0 shadow-lg sticky-top overflow-hidden" style={{ top: '100px', backgroundColor: 'var(--tv-panel)', zIndex: '900' }}>
+            <div className="card-header border-bottom border-secondary border-opacity-25 p-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+              <h5 className="mb-0 fw-bold" style={{ color: 'var(--tv-text)' }}>Order Summary</h5>
             </div>
-            <div className="card-body">
-              <ul className="list-unstyled mb-4">
+            <div className="card-body p-4">
+              <div className="d-flex flex-column gap-3 mb-4">
                 {cart.map(item => (
-                  <li key={item.product.id} className="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom" style={{ borderColor: 'var(--tv-border) !important' }}>
+                  <div key={item.product.id} className="d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center gap-3">
-                      <img src={item.product.image} alt={item.product.name} style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} />
+                      <div className="position-relative">
+                        <img src={item.product.image} alt={item.product.name} className="rounded-3 shadow-sm" style={{ width: '56px', height: '56px', objectFit: 'cover' }} />
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary border border-dark" style={{ fontSize: '0.65rem' }}>
+                          {item.quantity}
+                        </span>
+                      </div>
                       <div>
-                        <p className="mb-0 fw-bold small">{item.product.name}</p>
-                        <p className="mb-0 text-muted small">Qty: {item.quantity}</p>
+                        <p className="mb-0 fw-bold small line-clamp-1" style={{ maxWidth: '140px', color: 'var(--tv-text)' }}>{item.product.name}</p>
+                        <p className="mb-0 x-small" style={{ color: 'var(--tv-text-muted)' }}>{item.product.category}</p>
                       </div>
                     </div>
-                    <span className="fw-bold">${(item.product.price * item.quantity).toFixed(2)}</span>
-                  </li>
+                    <span className="fw-bold small" style={{ color: 'var(--tv-text-muted)' }}>${(item.product.price * item.quantity).toFixed(2)}</span>
+                  </div>
                 ))}
-              </ul>
-              <div className="d-flex justify-content-between mb-2">
-                <span className="text-muted">Subtotal</span>
-                <span>${total.toFixed(2)}</span>
               </div>
-              <div className="d-flex justify-content-between mb-3 pb-3 border-bottom" style={{ borderColor: 'var(--tv-border) !important' }}>
-                <span className="text-muted">Shipping</span>
-                <span className="text-success">Free</span>
-              </div>
-              <div className="d-flex justify-content-between align-items-center">
-                <span className="h5 mb-0 fw-bold">Total</span>
-                <span className="h4 mb-0 fw-bold text-success">${total.toFixed(2)}</span>
+              
+              <div className="border-top border-secondary border-opacity-25 pt-4">
+                <div className="d-flex justify-content-between mb-2">
+                  <span className="small" style={{ color: 'var(--tv-text-muted)' }}>Subtotal</span>
+                  <span className="fw-medium small" style={{ color: 'var(--tv-text)' }}>${total.toFixed(2)}</span>
+                </div>
+                <div className="d-flex justify-content-between mb-3">
+                  <span className="small" style={{ color: 'var(--tv-text-muted)' }}>Shipping</span>
+                  <span className="text-success small fw-bold">FREE</span>
+                </div>
+                <div className="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-25">
+                  <span className="h5 mb-0 fw-bold" style={{ color: 'var(--tv-text)' }}>Total</span>
+                  <span className="h4 mb-0 fw-bold text-success">${total.toFixed(2)}</span>
+                </div>
+                <div className="mt-4 p-3 rounded-3 border border-secondary border-opacity-10" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+                   <div className="d-flex align-items-center gap-2 x-small" style={{ color: 'var(--tv-text-muted)' }}>
+                      <ShieldCheck size={14} className="text-success" />
+                      <span>End-to-end encrypted payment</span>
+                   </div>
+                </div>
               </div>
             </div>
           </div>

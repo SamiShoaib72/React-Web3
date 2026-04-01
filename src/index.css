@@ -1,34 +1,71 @@
 :root {
-  --tv-bg: #131722;
-  --tv-panel: #1e222d;
-  --tv-border: #2a2e39;
-  --tv-text: #f0f0f0;
-  --tv-text-muted: #000000;
+  --tv-bg: #000000;
+  --tv-panel: #0a0a0a;
+  --tv-border: #222222;
+  --tv-text: #ffffff;
+  --tv-text-muted: #888888;
   --tv-blue: #2962ff;
-  --tv-green: #089981;
-  --tv-red: #f23645;
-  --tv-hover: #2a2e39;
+  --tv-light-blue: #4d7cff;
+  --tv-green: #00e676;
+  --tv-red: #ff1744;
+  --tv-hover: #111111;
+  --tv-header-bg: #0a1128; /* Deep Dark Blue */
+  --transition-speed: 0.3s;
+}
+
+[data-theme="light"] {
+  --tv-bg: #f8f9fa;
+  --tv-panel: #ffffff;
+  --tv-border: #dee2e6;
+  --tv-text: #212529;
+  --tv-text-muted: #6c757d;
+  --tv-blue: #0d6efd;
+  --tv-light-blue: #cfe2ff;
+  --tv-green: #198754;
+  --tv-red: #dc3545;
+  --tv-hover: #f1f3f5;
+}
+
+.footer {
+  background-color: var(--tv-header-bg) !important;
+  color: #ffffff !important;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-theme="light"] .navbar-toggler-icon {
+  filter: invert(1) !important; /* Force to white on the dark blue background */
+}
+
+* {
+  transition: background-color var(--transition-speed) ease, 
+              border-color var(--transition-speed) ease, 
+              color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
 }
 
 html,
 body {
-  background-color: var(--tv-bg);
-  color: var(--tv-text);
-  font-family: -apple-system, BlinkMacSystemFont, "Trebuchet MS", Roboto, Ubuntu, sans-serif;
+  background-color: var(--tv-bg) !important;
+  color: var(--tv-text) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .navbar {
-  background-color: var(--tv-panel) !important;
+  background-color: var(--tv-header-bg) !important;
   border-bottom: 1px solid var(--tv-border);
   z-index: 1100;
 }
 
 .navbar-brand,
 .nav-link {
-  color: var(--tv-text) !important;
+  color: #ffffff !important;
   transition: color 0.2s ease;
 }
 
@@ -43,17 +80,22 @@ body {
 }
 
 .card {
+  width: 100%;
   background-color: var(--tv-panel);
   border: 1px solid var(--tv-border);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   color: var(--tv-text);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  border-color: var(--tv-blue);
 }
 
 .card-img-top {
@@ -107,28 +149,77 @@ body {
   border-color: var(--tv-border);
 }
 
+.btn-buy-now {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  border: none;
+  color: #000;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-buy-now:hover {
+  background: linear-gradient(135deg, #ffca2c 0%, #ffb300 100%);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.text-dark {
+  color: var(--tv-text) !important;
+}
+
 .form-control,
 .input-group-text,
 .form-select {
-  background-color: var(--tv-hover);
+  background-color: var(--tv-panel);
   border: 1px solid var(--tv-border);
   color: var(--tv-text);
+  border-radius: 8px;
 }
 
 .form-control:focus,
 .form-select:focus {
-  background-color: var(--tv-hover);
+  background-color: #000000;
   color: var(--tv-text);
   border-color: var(--tv-blue);
-  box-shadow: 0 0 0 0.25rem rgba(41, 98, 255, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(41, 98, 255, 0.15);
 }
 
 .form-control::placeholder {
   color: var(--tv-text-muted);
+  opacity: 0.6;
+}
+
+[data-theme="light"] .navbar-toggler-icon {
+  filter: invert(0) !important;
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+  filter: invert(1) !important;
+}
+
+.bg-dark {
+  background-color: var(--tv-panel) !important;
 }
 
 .text-muted {
   color: var(--tv-text-muted) !important;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--tv-border);
+  filter: brightness(0.9);
+}
+
+.btn-primary {
+  background-color: var(--tv-blue);
+  border-color: var(--tv-blue);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .badge {
@@ -201,6 +292,38 @@ body {
 .modal-content {
   background-color: var(--tv-panel);
   border: 1px solid var(--tv-border);
+  color: var(--tv-text);
+}
+
+.modal-header, .modal-footer {
+  border-color: var(--tv-border);
+}
+
+.dropdown-menu {
+  background-color: var(--tv-panel);
+  border: 1px solid var(--tv-border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.dropdown-item {
+  color: var(--tv-text);
+  padding: 0.6rem 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--tv-hover);
+  color: var(--tv-blue);
+}
+
+.dropdown-divider {
+  border-top-color: var(--tv-border);
+}
+
+.list-group-item {
+  background-color: var(--tv-panel);
+  border-color: var(--tv-border);
+  color: var(--tv-text);
 }
 
 .modal-header {
@@ -459,4 +582,47 @@ a:hover {
   .product-detail-img {
     height: 250px;
   }
+}
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2; /* Enabled as standard property */
+}
+
+.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* Product Card Hover Effects */
+.group-hover:hover .action-overlay {
+  transform: translateY(0) !important;
+}
+
+.action-overlay {
+  backdrop-filter: blur(8px);
+  background: linear-gradient(0deg, rgba(10, 17, 40, 0.9) 0%, rgba(10, 17, 40, 0) 100%);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding-bottom: 25px !important;
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.15);
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.hover-opacity:hover {
+  opacity: 0.8;
 }

@@ -23,19 +23,19 @@ export default function Shop() {
           <h2 className="fw-bold m-0"><span className="text-warning">&bull;</span> Complete Collection</h2>
         </div>
         <div className="col-12 col-md-8 d-flex flex-column flex-md-row gap-2 justify-content-md-end">
-          <select 
-            className="form-select w-auto" 
-            value={category} 
+          <select
+            className="form-select w-auto"
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
             {categories.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
           <div className="input-group">
             <span className="input-group-text bg-transparent border-end-0"><Search size={18} /></span>
-            <input 
-              type="text" 
-              className="form-control border-start-0 ps-0" 
-              placeholder="Search kicks..." 
+            <input
+              type="text"
+              className="form-control border-start-0 ps-0"
+              placeholder="   Search kicks..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />

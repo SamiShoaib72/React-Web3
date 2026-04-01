@@ -70,211 +70,213 @@ export default function AdminDashboard() {
 
   return (
     <div className="container py-4">
-      <div className="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3" style={{ borderColor: 'var(--tv-border)' }}>
-        <h2 className="m-0 d-flex align-items-center gap-2 fw-bold text-dark">
-          <Settings className="text-warning" /> Admin Control Panel
+      <div className="d-flex justify-content-between align-items-center mb-5 border-bottom border-secondary border-opacity-25 pb-4">
+        <h2 className="m-0 d-flex align-items-center gap-3 fw-bold" style={{ color: 'var(--tv-text)' }}>
+          <div className="p-2 rounded-3 bg-warning bg-opacity-10">
+            <Settings className="text-warning" size={28} />
+          </div>
+          Admin Control Center
         </h2>
         {activeTab === 'inventory' && (
           <button
-            className="btn btn-warning fw-bold d-flex align-items-center gap-2 rounded-pill px-4"
+            className="btn btn-warning fw-bold d-flex align-items-center gap-2 rounded-3 px-4 py-2 shadow-sm transition-transform"
             onClick={() => setShowAddForm(!showAddForm)}
           >
-            <PlusCircle size={18} /> Add Shoe
+            <PlusCircle size={20} /> Add New Shoe
           </button>
         )}
       </div>
 
-      <ul className="nav nav-pills mb-4 gap-2">
-        <li className="nav-item">
-          <button className={`nav-link font-weight-bold d-flex align-items-center gap-2 ${activeTab === 'inventory' ? 'active bg-primary' : 'bg-dark text-light border border-secondary'}`} onClick={() => setActiveTab('inventory')}>
-            <Package size={18} /> Inventory
-          </button>
-        </li>
-        <li className="nav-item">
-          <button className={`nav-link font-weight-bold d-flex align-items-center gap-2 ${activeTab === 'orders' ? 'active bg-primary' : 'bg-dark text-light border border-secondary'}`} onClick={() => setActiveTab('orders')}>
-            <FileText size={18} /> Orders
-          </button>
-        </li>
-        <li className="nav-item">
-          <button className={`nav-link font-weight-bold d-flex align-items-center gap-2 ${activeTab === 'users' ? 'active bg-primary' : 'bg-dark text-light border border-secondary'}`} onClick={() => setActiveTab('users')}>
-            <Users size={18} /> Users
-          </button>
-        </li>
-      </ul>
+      <div className="d-flex flex-column flex-md-row gap-3 mb-5">
+        <button className={`btn d-flex align-items-center gap-2 px-4 py-2 fw-bold transition-transform ${activeTab === 'inventory' ? 'btn-primary shadow-sm' : 'btn-outline-primary border-opacity-25'}`} onClick={() => setActiveTab('inventory')} style={{ color: activeTab === 'inventory' ? 'white' : 'var(--tv-text)' }}>
+          <Package size={18} /> Inventory
+        </button>
+        <button className={`btn d-flex align-items-center gap-2 px-4 py-2 fw-bold transition-transform ${activeTab === 'orders' ? 'btn-primary shadow-sm' : 'btn-outline-primary border-opacity-25'}`} onClick={() => setActiveTab('orders')} style={{ color: activeTab === 'orders' ? 'white' : 'var(--tv-text)' }}>
+          <FileText size={18} /> Orders
+        </button>
+        <button className={`btn d-flex align-items-center gap-2 px-4 py-2 fw-bold transition-transform ${activeTab === 'users' ? 'btn-primary shadow-sm' : 'btn-outline-primary border-opacity-25'}`} onClick={() => setActiveTab('users')} style={{ color: activeTab === 'users' ? 'white' : 'var(--tv-text)' }}>
+          <Users size={18} /> User Management
+        </button>
+      </div>
 
       {activeTab === 'inventory' && (
-        <>
+        <div className="row g-4">
           {showAddForm && (
-            <div className="card mb-4 border-0" style={{ backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border) !important', boxShadow: '0 4px 15px rgba(0,0,0,0.3)' }}>
-              <div className="card-header text-white border-bottom" style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'var(--tv-border) !important' }}>
-                <h5 className="mb-0 fw-bold">Add New Shoe Listing</h5>
-              </div>
-              <div className="card-body">
-                <form onSubmit={handleAddSubmit}>
-                  <div className="row g-3">
-                    <div className="col-md-6">
-                      <label className="form-label text-muted small">Name</label>
-                      <input type="text" className="form-control" value={newProduct.name} onChange={e => setNewProduct({ ...newProduct, name: e.target.value })} required />
-                    </div>
-                    <div className="col-md-3">
-                      <label className="form-label text-muted small">Price ($)</label>
-                      <input type="number" step="0.01" className="form-control" value={newProduct.price} onChange={e => setNewProduct({ ...newProduct, price: e.target.value })} required />
-                    </div>
-                    <div className="col-md-3">
-                      <label className="form-label text-muted small">Stock</label>
-                      <input type="number" className="form-control" value={newProduct.stock} onChange={e => setNewProduct({ ...newProduct, stock: e.target.value })} required />
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label text-muted small">Image File (Upload)</label>
-                      <div className="d-flex align-items-center gap-2">
-                        <input type="file" accept="image/*" className="form-control" onChange={(e) => handleImageUpload(e, false)} required={!newProduct.image} />
-                        {newProduct.image && <img src={newProduct.image} alt="Preview" style={{ height: '38px', objectFit: 'cover', borderRadius: '4px' }} />}
+            <div className="col-12">
+              <div className="card border-0 shadow-lg overflow-hidden animate-fade-in" style={{ backgroundColor: 'var(--tv-panel)' }}>
+                <div className="card-header border-bottom border-secondary border-opacity-25 p-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+                  <h5 className="mb-0 fw-bold" style={{ color: 'var(--tv-text)' }}>List New Product</h5>
+                </div>
+                <div className="card-body p-4">
+                  <form onSubmit={handleAddSubmit}>
+                    <div className="row g-4">
+                      <div className="col-md-6">
+                        <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Product Name</label>
+                        <input type="text" className="form-control py-2" value={newProduct.name} onChange={e => setNewProduct({ ...newProduct, name: e.target.value })} required placeholder="e.g. Air Max Fusion" />
+                      </div>
+                      <div className="col-md-3">
+                        <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Price ($)</label>
+                        <input type="number" step="0.01" className="form-control py-2" value={newProduct.price} onChange={e => setNewProduct({ ...newProduct, price: e.target.value })} required placeholder="0.00" />
+                      </div>
+                      <div className="col-md-3">
+                        <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Stock Quantity</label>
+                        <input type="number" className="form-control py-2" value={newProduct.stock} onChange={e => setNewProduct({ ...newProduct, stock: e.target.value })} required placeholder="0" />
+                      </div>
+                      <div className="col-md-6">
+                        <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Product Image (Upload)</label>
+                        <div className="d-flex align-items-center gap-3">
+                          <input type="file" accept="image/*" className="form-control py-2" onChange={(e) => handleImageUpload(e, false)} required={!newProduct.image} />
+                          {newProduct.image && <img src={newProduct.image} alt="Preview" className="rounded-3 shadow-sm border border-secondary" style={{ height: '42px', width: '42px', objectFit: 'cover' }} />}
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Category</label>
+                        <input type="text" className="form-control py-2" value={newProduct.category} onChange={e => setNewProduct({ ...newProduct, category: e.target.value })} required placeholder="e.g. Lifestyle" />
+                      </div>
+                      <div className="col-12">
+                        <label className="form-label small fw-medium" style={{ color: 'var(--tv-text-muted)' }}>Description</label>
+                        <textarea className="form-control py-2" rows="3" value={newProduct.description} onChange={e => setNewProduct({ ...newProduct, description: e.target.value })} required placeholder="Tell customers more about this shoe..."></textarea>
+                      </div>
+                      <div className="col-12 d-flex justify-content-end gap-2 mt-2">
+                        <button type="button" className="btn btn-outline-secondary px-4" onClick={() => setShowAddForm(false)}>Cancel</button>
+                        <button type="submit" className="btn btn-success px-4 fw-bold">Publish Listing</button>
                       </div>
                     </div>
-                    <div className="col-md-6">
-                      <label className="form-label text-muted small">Category</label>
-                      <input type="text" className="form-control" value={newProduct.category} onChange={e => setNewProduct({ ...newProduct, category: e.target.value })} required />
-                    </div>
-                    <div className="col-12">
-                      <label className="form-label text-muted small">Description</label>
-                      <textarea className="form-control" rows="2" value={newProduct.description} onChange={e => setNewProduct({ ...newProduct, description: e.target.value })} required></textarea>
-                    </div>
-                    <div className="col-12 d-flex justify-content-end gap-2 text-end">
-                      <button type="button" className="btn btn-outline-light" onClick={() => setShowAddForm(false)}>Cancel</button>
-                      <button type="submit" className="btn btn-success">Publish Shoe</button>
-                    </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
           )}
 
-          <div className="card bg-dark border-secondary">
-            <div className="card-header border-bottom-0 pb-0 bg-dark text-light">
-              <h5 className="mb-3 fw-bold">Active Inventory</h5>
-            </div>
-            <div className="table-responsive">
-              <table className="table table-hover align-middle mb-0 text-light">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Shoe Name</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Stock Level</th>
-                    <th className="text-end">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map(product => (
-                    <tr key={product.id}>
-                      {editingProductId === product.id ? (
-                        <>
-                          <td data-label="ID" className="text-muted small">#{product.id.toString().slice(-4)}</td>
-                          <td data-label="Shoe Name">
-                            <div className="d-flex flex-column gap-2 mb-1">
-                              <input type="text" className="form-control form-control-sm bg-dark text-light border-secondary" value={editingProduct.name} onChange={e => setEditingProduct({ ...editingProduct, name: e.target.value })} placeholder="Name" />
-                              <div className="d-flex align-items-center gap-2">
-                                <input type="file" accept="image/*" className="form-control form-control-sm bg-dark text-light border-secondary" onChange={(e) => handleImageUpload(e, true)} />
-                                {editingProduct.image && <img src={editingProduct.image} alt="Preview" style={{ width: 30, height: 30, objectFit: 'cover', borderRadius: '4px' }} />}
-                              </div>
-                            </div>
-                          </td>
-                          <td data-label="Price"><input type="number" step="0.01" className="form-control form-control-sm bg-dark text-light border-secondary" value={editingProduct.price} onChange={e => setEditingProduct({ ...editingProduct, price: e.target.value })} style={{ width: "80px" }} /></td>
-                          <td data-label="Category"><input type="text" className="form-control form-control-sm bg-dark text-light border-secondary" value={editingProduct.category} onChange={e => setEditingProduct({ ...editingProduct, category: e.target.value })} style={{ width: "100px" }} /></td>
-                          <td data-label="Stock"><input type="number" className="form-control form-control-sm bg-dark text-light border-secondary" value={editingProduct.stock} onChange={e => setEditingProduct({ ...editingProduct, stock: e.target.value })} style={{ width: "80px" }} /></td>
-                          <td data-label="Actions" className="text-end">
-                            <button className="btn btn-sm btn-success me-2" onClick={saveEditProduct}>Save</button>
-                            <button className="btn btn-sm btn-outline-light" onClick={() => setEditingProductId(null)}>Cancel</button>
-                          </td>
-                        </>
-                      ) : (
-                        <>
-                          <td data-label="ID" className="text-muted small">#{product.id.toString().slice(-4)}</td>
-                          <td data-label="Shoe Name">
-                            <div className="d-flex align-items-center gap-3">
-                              <img src={product.image} alt={product.name} style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: '4px' }} />
-                              <span className="fw-bold">{product.name}</span>
-                            </div>
-                          </td>
-                          <td data-label="Price" className="fw-bold text-success">${product.price.toFixed(2)}</td>
-                          <td data-label="Category"><span className="badge bg-secondary">{product.category}</span></td>
-                          <td data-label="Stock">
-                            <span className={`badge ${product.stock > 10 ? 'bg-success' : product.stock > 0 ? 'bg-warning' : 'bg-danger'}`}>
-                              {product.stock}
-                            </span>
-                          </td>
-                          <td data-label="Actions" className="text-end">
-                            <button className="btn btn-sm btn-primary me-2" onClick={() => startEditProduct(product)}>
-                              <Edit size={14} />
-                            </button>
-                            <button className="btn btn-sm btn-danger" onClick={() => removeProduct(product.id)}>
-                              <Trash2 size={14} />
-                            </button>
-                          </td>
-                        </>
-                      )}
-                    </tr>
-                  ))}
-                  {products.length === 0 && (
+          <div className="col-12">
+            <div className="card border-0 shadow-sm overflow-hidden" style={{ backgroundColor: 'var(--tv-panel)' }}>
+              <div className="card-header border-bottom border-secondary border-opacity-25 bg-none p-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+                <h5 className="mb-0 fw-bold" style={{ color: 'var(--tv-text)' }}>Active Product Inventory</h5>
+              </div>
+              <div className="table-responsive">
+                <table className="table table-hover align-middle mb-0" style={{ color: 'var(--tv-text)' }}>
+                  <thead style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
                     <tr>
-                      <td colSpan="6" className="text-center py-4 text-muted">No shoes listed yet.</td>
+                      <th className="px-4 py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>PRODUCT</th>
+                      <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>PRICE</th>
+                      <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>CATEGORY</th>
+                      <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>STOCK STATUS</th>
+                      <th className="px-4 py-3 border-0 small fw-bold text-end" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>ACTIONS</th>
                     </tr>
-                  )}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {products.map(product => (
+                      <tr key={product.id} className="border-bottom border-secondary border-opacity-10">
+                        {editingProductId === product.id ? (
+                          <>
+                            <td className="px-4 py-3">
+                              <div className="d-flex flex-column gap-2">
+                                <input type="text" className="form-control form-control-sm" value={editingProduct.name} onChange={e => setEditingProduct({ ...editingProduct, name: e.target.value })} />
+                                <div className="d-flex align-items-center gap-2">
+                                  <input type="file" accept="image/*" className="form-control form-control-sm" onChange={(e) => handleImageUpload(e, true)} />
+                                  {editingProduct.image && <img src={editingProduct.image} alt="Preview" className="rounded-2" style={{ width: 28, height: 28, objectFit: 'cover' }} />}
+                                </div>
+                              </div>
+                            </td>
+                            <td className="py-3"><input type="number" step="0.01" className="form-control form-control-sm" value={editingProduct.price} onChange={e => setEditingProduct({ ...editingProduct, price: e.target.value })} style={{ width: "90px" }} /></td>
+                            <td className="py-3"><input type="text" className="form-control form-control-sm" value={editingProduct.category} onChange={e => setEditingProduct({ ...editingProduct, category: e.target.value })} style={{ width: "110px" }} /></td>
+                            <td className="py-3"><input type="number" className="form-control form-control-sm" value={editingProduct.stock} onChange={e => setEditingProduct({ ...editingProduct, stock: e.target.value })} style={{ width: "80px" }} /></td>
+                            <td className="px-4 py-3 text-end">
+                              <div className="d-flex justify-content-end gap-2">
+                                <button className="btn btn-sm btn-success px-3 fw-bold" onClick={saveEditProduct}>Save</button>
+                                <button className="btn btn-sm btn-outline-secondary px-3" onClick={() => setEditingProductId(null)}>Cancel</button>
+                              </div>
+                            </td>
+                          </>
+                        ) : (
+                          <>
+                            <td className="px-4 py-3">
+                              <div className="d-flex align-items-center gap-3">
+                                <img src={product.image} alt={product.name} className="rounded-3 shadow-sm border border-secondary border-opacity-25" style={{ width: 44, height: 44, objectFit: 'cover' }} />
+                                <div>
+                                  <div className="fw-bold" style={{ color: 'var(--tv-text-muted)', fontSize: '0.95rem' }}>{product.name}</div>
+                                  <div className="x-small mt-1" style={{ color: 'var(--tv-text-muted)' }}>ID: <span className="opacity-75">#{String(product.id).slice(-4)}</span></div>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="py-3 fw-bold text-success small">${product.price.toFixed(2)}</td>
+                            <td className="py-3">
+                              <span className="badge px-2 py-1 x-small fw-bold rounded-pill" style={{ backgroundColor: 'rgba(41, 98, 255, 0.15)', color: 'var(--tv-blue)' }}>
+                                {product.category}
+                              </span>
+                            </td>
+                            <td className="py-3">
+                              <div className="d-flex align-items-center gap-2">
+                                <span className={`rounded-circle ${product.stock > 10 ? 'bg-success' : product.stock > 0 ? 'bg-warning' : 'bg-danger'}`} style={{ width: 8, height: 8 }}></span>
+                                <span className={`small fw-medium ${product.stock > 10 ? 'text-success' : product.stock > 0 ? 'text-warning' : 'text-danger'}`}>
+                                  {product.stock} Units
+                                </span>
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 text-end">
+                              <div className="d-flex justify-content-end gap-2">
+                                <button className="btn btn-sm btn-outline-primary shadow-none p-2 rounded-3" onClick={() => startEditProduct(product)}>
+                                  <Edit size={16} />
+                                </button>
+                                <button className="btn btn-sm btn-outline-danger shadow-none p-2 rounded-3" onClick={() => removeProduct(product.id)}>
+                                  <Trash2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </>
+        </div>
       )}
 
       {activeTab === 'orders' && (
-        <div className="card" style={{ backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border)' }}>
-          <div className="card-header border-bottom-0 pb-0" style={{ color: 'var(--tv-text)' }}>
-            <h5 className="mb-3 fw-bold">Recent Orders</h5>
+        <div className="card border-0 shadow-sm overflow-hidden" style={{ backgroundColor: 'var(--tv-panel)' }}>
+          <div className="card-header border-bottom border-secondary border-opacity-25 p-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+            <h5 className="mb-0 fw-bold" style={{ color: 'var(--tv-text)' }}>Recent Customer Orders</h5>
           </div>
           <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
-              <thead>
+            <table className="table table-hover align-middle mb-0" style={{ color: 'var(--tv-text)' }}>
+              <thead style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
                 <tr>
-                  <th>Order ID</th>
-                  <th>Date</th>
-                  <th>Customer</th>
-                  <th>Total</th>
-                  <th>Status</th>
-                  <th className="text-end">Actions</th>
+                  <th className="px-4 py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>ORDER ID</th>
+                  <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>DATE</th>
+                  <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>CUSTOMER</th>
+                  <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>TOTAL</th>
+                  <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>STATUS</th>
+                  <th className="px-4 py-3 border-0 small fw-bold text-end" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
                 {orders?.map(order => (
-                  <tr key={order.id}>
-                    <td data-label="Order ID" className="text-muted small">#{String(order.id).slice(-6)}</td>
-                    <td data-label="Date" className="small">{order.date}</td>
-                    <td data-label="Customer" className="fw-bold">{order.customerName || order.email || 'Guest User'}</td>
-                    <td data-label="Total" className="fw-bold text-success">${order.total?.toFixed(2)}</td>
-                    <td data-label="Status">
+                  <tr key={order.id} className="border-bottom border-secondary border-opacity-10">
+                    <td className="px-4 py-3 small fw-bold" style={{ color: 'var(--tv-text-muted)' }}>#{String(order.id).slice(-8).toUpperCase()}</td>
+                    <td className="py-3 small" style={{ color: 'var(--tv-text-muted)' }}>{order.date}</td>
+                    <td className="py-3 fw-bold" style={{ color: 'var(--tv-text-muted)', fontSize: '0.95rem' }}>{order.customerName || order.email || 'Guest User'}</td>
+                    <td className="py-3 fw-bold text-success small">${order.total?.toFixed(2)}</td>
+                    <td className="py-3">
                       <select
-                        className={`form-select form-select-sm fw-bold ${order.status === 'Processing' ? 'text-primary' : order.status === 'Shipped' ? 'text-info' : order.status === 'Pending' ? 'text-warning' : 'text-success'}`}
+                        className={`form-select form-select-sm fw-bold border-secondary border-opacity-25 shadow-sm rounded-3 ${order.status === 'Processing' ? 'text-primary' : order.status === 'Shipped' ? 'text-info' : order.status === 'Pending' ? 'text-warning' : 'text-success'}`}
                         value={order.status}
                         onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                        style={{ backgroundColor: 'var(--tv-bg, #1e222d)', border: '1px solid var(--tv-border, #434651)', width: '130px' }}
+                        style={{ backgroundColor: 'var(--tv-bg)', width: '135px' }}
                       >
-                        <option value="Pending">Pending</option>
-                        <option value="Processing">Processing</option>
-                        <option value="Shipped">Shipped</option>
-                        <option value="Delivered">Delivered</option>
+                        <option value="Pending">🕒 Pending</option>
+                        <option value="Processing">🔄 Processing</option>
+                        <option value="Shipped">📦 Shipped</option>
+                        <option value="Delivered">✅ Delivered</option>
                       </select>
                     </td>
-                    <td data-label="Actions" className="text-end">
-                      <button className="btn btn-sm btn-outline-dark">View Details</button>
+                    <td className="px-4 py-3 text-end">
+                      <button className="btn btn-sm btn-primary px-3 rounded-pill small border-opacity-25 transition-transform" style={{ color: 'var(--tv-text)' }}>Details</button>
                     </td>
                   </tr>
                 ))}
-                {(!orders || orders.length === 0) && (
-                  <tr>
-                    <td colSpan="6" className="text-center py-4 text-muted">No orders found.</td>
-                  </tr>
-                )}
               </tbody>
             </table>
           </div>
@@ -282,50 +284,45 @@ export default function AdminDashboard() {
       )}
 
       {activeTab === 'users' && (
-        <div className="card" style={{ backgroundColor: 'var(--tv-panel)', border: '1px solid var(--tv-border)' }}>
-          <div className="card-header border-bottom-0 pb-0" style={{ color: 'var(--tv-text)' }}>
-            <h5 className="mb-3 fw-bold">Registered Users</h5>
+        <div className="card border-0 shadow-sm overflow-hidden" style={{ backgroundColor: 'var(--tv-panel)' }}>
+          <div className="card-header border-bottom border-secondary border-opacity-25 p-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+            <h5 className="mb-0 fw-bold" style={{ color: 'var(--tv-text)' }}>Registered Customer Base</h5>
           </div>
           <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
-              <thead>
+            <table className="table table-hover align-middle mb-0" style={{ color: 'var(--tv-text)' }}>
+              <thead style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
                 <tr>
-                  <th>User ID</th>
-                  <th>Name</th>
-                  <th>Email Address</th>
-                  <th>Role</th>
-                  <th>Joined Date</th>
-                  <th className="text-end">Actions</th>
+                  <th className="px-4 py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>USER ID</th>
+                  <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>FULL NAME</th>
+                  <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>EMAIL ADDRESS</th>
+                  <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>ACCESS ROLE</th>
+                  <th className="py-3 border-0 small fw-bold" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>JOINED DATE</th>
+                  <th className="px-4 py-3 border-0 small fw-bold text-end" style={{ color: 'var(--tv-text-muted)', letterSpacing: '0.5px' }}>ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
                 {usersList?.map(u => (
-                  <tr key={u.id}>
-                    <td data-label="User ID" className="text-muted small">#{u.id}</td>
-                    <td data-label="Name" className="fw-bold">{u.name}</td>
-                    <td data-label="Email">{u.email}</td>
-                    <td data-label="Role">
+                  <tr key={u.id} className="border-bottom border-secondary border-opacity-10">
+                    <td className="px-4 py-3 small fw-bold" style={{ color: 'var(--tv-text-muted)' }}>#{u.id}</td>
+                    <td className="py-3 fw-bold" style={{ color: 'var(--tv-text-muted)', fontSize: '0.95rem' }}>{u.name}</td>
+                    <td className="py-3 small" style={{ color: 'var(--tv-text-muted)' }}>{u.email}</td>
+                    <td className="py-3">
                       <select
-                        className={`form-select form-select-sm fw-bold ${u.role === 'admin' ? 'text-danger' : 'text-secondary'}`}
+                        className={`form-select form-select-sm fw-bold border-secondary border-opacity-25 shadow-sm rounded-3 ${u.role === 'admin' ? 'text-danger' : 'text-primary'}`}
                         value={u.role}
                         onChange={(e) => updateUserRole(u.id, e.target.value)}
-                        style={{ backgroundColor: 'var(--tv-bg, #1e222d)', border: '1px solid var(--tv-border, #434651)', width: '100px' }}
+                        style={{ backgroundColor: 'var(--tv-bg)', width: '110px' }}
                       >
-                        <option value="user">USER</option>
+                        <option value="user">CUSTOMER</option>
                         <option value="admin">ADMIN</option>
                       </select>
                     </td>
-                    <td data-label="Joined" className="small">{u.joined}</td>
-                    <td data-label="Actions" className="text-end">
-                      <button className="btn btn-sm btn-outline-dark">Manage</button>
+                    <td className="py-3 small" style={{ color: 'var(--tv-text-muted)' }}>{u.joined}</td>
+                    <td className="px-4 py-3 text-end">
+                      <button className="btn btn-sm btn-primary px-3 rounded-pill small border-opacity-25 transition-transform" style={{ color: 'var(--tv-text)' }}>Profile</button>
                     </td>
                   </tr>
                 ))}
-                {(!usersList || usersList.length === 0) && (
-                  <tr>
-                    <td colSpan="6" className="text-center py-4 text-muted">No users found.</td>
-                  </tr>
-                )}
               </tbody>
             </table>
           </div>

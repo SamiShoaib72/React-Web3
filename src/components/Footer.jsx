@@ -3,7 +3,7 @@ import { Zap, Globe, MessageCircle, Share2, Video, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="footer mt-auto border-top pt-4 pt-md-5 pb-3" style={{ borderColor: 'var(--tv-border)', backgroundColor: 'var(--tv-panel)' }}>
+    <footer className="footer mt-auto border-top pt-4 pt-md-5 pb-3">
       <div className="container">
         <div className="row g-3 g-md-4 mb-4 mb-md-5 text-center text-md-start">
           <div className="col-lg-4 col-md-6">

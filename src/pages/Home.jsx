@@ -49,24 +49,24 @@ export default function Home() {
         <div className="container my-3">
           <div className="row g-4 text-center">
             <div className="col-md-4">
-              <div className="p-4 rounded h-100 value-card" style={{ backgroundColor: 'var(--tv-bg)', border: '1px solid var(--tv-border)' }}>
+              <div className="p-4 rounded h-100 value-card shadow-sm" style={{ backgroundColor: 'var(--tv-bg)', border: '1px solid var(--tv-border)' }}>
                 <div className="text-warning mb-3"><Truck size={40} /></div>
-                <h5 className="fw-bold text-white mb-2">Free Shipping</h5>
-                <p className="text-white mb-0 small">On all orders over $100. Delivered to your doorstep fast and secure.</p>
+                <h5 className="fw-bold mb-2" style={{ color: 'var(--tv-text)' }}>Free Shipping</h5>
+                <p className="mb-0 small" style={{ color: 'var(--tv-text-muted)' }}>On all orders over $100. Delivered to your doorstep fast and secure.</p>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="p-4 rounded h-100 value-card" style={{ backgroundColor: 'var(--tv-bg)', border: '1px solid var(--tv-border)' }}>
+              <div className="p-4 rounded h-100 value-card shadow-sm" style={{ backgroundColor: 'var(--tv-bg)', border: '1px solid var(--tv-border)' }}>
                 <div className="text-warning mb-3"><RefreshCcw size={40} /></div>
-                <h5 className="fw-bold text-white mb-2">30-Day Returns</h5>
-                <p className="text-white mb-0 small">Not the perfect fit? Return them within 30 days, no questions asked.</p>
+                <h5 className="fw-bold mb-2" style={{ color: 'var(--tv-text)' }}>30-Day Returns</h5>
+                <p className="mb-0 small" style={{ color: 'var(--tv-text-muted)' }}>Not the perfect fit? Return them within 30 days, no questions asked.</p>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="p-4 rounded h-100 value-card" style={{ backgroundColor: 'var(--tv-bg)', border: '1px solid var(--tv-border)' }}>
+              <div className="p-4 rounded h-100 value-card shadow-sm" style={{ backgroundColor: 'var(--tv-bg)', border: '1px solid var(--tv-border)' }}>
                 <div className="text-warning mb-3"><ShieldCheck size={40} /></div>
-                <h5 className="fw-bold text-white mb-2">Authentic Gear</h5>
-                <p className="text-white mb-0 small">100% authentic sneakers sourced directly from verified manufacturers.</p>
+                <h5 className="fw-bold mb-2" style={{ color: 'var(--tv-text)' }}>Authentic Gear</h5>
+                <p className="mb-0 small" style={{ color: 'var(--tv-text-muted)' }}>100% authentic sneakers sourced directly from verified manufacturers.</p>
               </div>
             </div>
           </div>
