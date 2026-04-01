@@ -1,13 +1,33 @@
 import { useStore } from '../store';
-import { ShoppingCart, Heart, Zap } from 'lucide-react';
+import { ShoppingCart, Heart, Zap, Check } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function ProductCard({ product }) {
   const { cart, addToCart, wishlist, toggleWishlist } = useStore();
   const navigate = useNavigate();
+  const [isAdded, setIsAdded] = useState(false);
 
   const isWishlisted = wishlist.includes(product.id);
   const cartItem = cart.find(item => item.product.id === product.id);
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    setIsAdded(true);
+    toast.success(`${product.name} added to cart!`, {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+      iconTheme: {
+        primary: '#ffd700',
+        secondary: '#333',
+      },
+    });
+    setTimeout(() => setIsAdded(false), 2000);
+  };
 
   const handleBuyNow = () => {
     if (product.stock > 0) {
@@ -32,7 +52,17 @@ export default function ProductCard({ product }) {
         }}
         onClick={(e) => {
           e.preventDefault();
+          const isRemoving = wishlist.includes(product.id);
           toggleWishlist(product.id);
+          if (isRemoving) {
+            toast.error(`Removed from wishlist`, {
+              style: { borderRadius: '10px', background: '#333', color: '#fff' }
+            });
+          } else {
+            toast.success(`Added to wishlist!`, {
+              style: { borderRadius: '10px', background: '#333', color: '#fff' }
+            });
+          }
         }}
         aria-label="Toggle Wishlist"
       >
@@ -61,11 +91,19 @@ export default function ProductCard({ product }) {
         >
           <div className="d-flex gap-2">
             <button
-              className="btn btn-primary btn-sm flex-grow-1 fw-bold py-2 rounded-2 d-flex align-items-center justify-content-center gap-2"
-              onClick={() => addToCart(product)}
-              disabled={product.stock === 0}
+              className={`btn ${isAdded ? 'btn-success' : 'btn-primary'} btn-sm flex-grow-1 fw-bold py-2 rounded-2 d-flex align-items-center justify-content-center gap-2 transition-all`}
+              onClick={handleAddToCart}
+              disabled={product.stock === 0 || isAdded}
             >
-              <ShoppingCart size={16} /> Add
+              {isAdded ? (
+                <>
+                  <Check size={16} /> Added
+                </>
+              ) : (
+                <>
+                  <ShoppingCart size={16} /> Add
+                </>
+              )}
             </button>
             <button
               className="btn btn-warning btn-sm flex-grow-1 fw-bold py-2 rounded-2 d-flex align-items-center justify-content-center gap-2"

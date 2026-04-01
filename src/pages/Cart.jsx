@@ -1,10 +1,18 @@
 import { useStore } from '../store';
 import { Trash2, Plus, Minus } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity } = useStore();
   const navigate = useNavigate();
+
+  const handleRemove = (productId, name) => {
+    removeFromCart(productId);
+    toast.error(`${name} removed from cart`, {
+      style: { borderRadius: '10px', background: '#333', color: '#fff' }
+    });
+  };
 
   const total = cart.reduce((acc, item) => acc + (item.product.price * item.quantity), 0);
 
@@ -47,7 +55,7 @@ export default function Cart() {
                         <Link to={`/product/${product.id}`} className="text-decoration-none">
                           <h6 className="mb-0 fw-bold fs-5" style={{ color: 'var(--tv-text)' }}>{product.name}</h6>
                         </Link>
-                        <button className="btn btn-link text-danger p-0 border-0 shadow-none" onClick={() => removeFromCart(product.id)}>
+                        <button className="btn btn-link text-danger p-0 border-0 shadow-none" onClick={() => handleRemove(product.id, product.name)}>
                           <Trash2 size={20} />
                         </button>
                       </div>

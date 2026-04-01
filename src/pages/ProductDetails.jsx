@@ -3,6 +3,7 @@ import { useStore } from '../store';
 import { ShoppingCart, Heart, ArrowLeft, ShieldCheck, Truck, Zap } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -26,6 +27,17 @@ export default function ProductDetails() {
   const handleAddToCart = () => {
     addToCart(product);
     setAdded(true);
+    toast.success(`${product.name} added to cart!`, {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+      iconTheme: {
+        primary: '#ffd700',
+        secondary: '#333',
+      },
+    });
     setTimeout(() => setAdded(false), 2000);
   };
 
@@ -87,7 +99,19 @@ export default function ProductDetails() {
               <button
                 className="btn btn-outline-secondary btn-lg px-4 d-flex align-items-center justify-content-center"
                 style={{ border: '1px solid var(--tv-border)', color: 'var(--tv-text)' }}
-                onClick={() => toggleWishlist(product.id)}
+                onClick={() => {
+                  const isRemoving = wishlist.includes(product.id);
+                  toggleWishlist(product.id);
+                  if (isRemoving) {
+                    toast.error(`Removed from wishlist`, {
+                      style: { borderRadius: '10px', background: '#333', color: '#fff' }
+                    });
+                  } else {
+                    toast.success(`Added to wishlist!`, {
+                      style: { borderRadius: '10px', background: '#333', color: '#fff' }
+                    });
+                  }
+                }}
               >
                 <Heart size={24} className={isWishlisted ? 'text-danger' : ''} fill={isWishlisted ? "currentColor" : "none"} />
               </button>

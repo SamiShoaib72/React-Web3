@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css';
 import { ThemeProvider } from './context/ThemeContext';
+import { Toaster } from 'react-hot-toast';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -30,6 +31,7 @@ function ScrollToTop() {
 function App() {
   return (
     <ThemeProvider>
+      <Toaster position="bottom-right" reverseOrder={false} />
       <Router>
         <ScrollToTop />
         <Routes>
