@@ -36,9 +36,8 @@
   color: rgba(255, 255, 255, 0.8) !important;
 }
 
-[data-theme="light"] .navbar-toggler-icon {
+.navbar-toggler-icon {
   filter: invert(1) !important;
-  /* Force to white on the dark blue background */
 }
 
 * {
@@ -192,13 +191,6 @@ body {
   opacity: 0.6;
 }
 
-[data-theme="light"] .navbar-toggler-icon {
-  filter: invert(0) !important;
-}
-
-[data-theme="light"] .navbar-toggler-icon {
-  filter: invert(1) !important;
-}
 
 .bg-dark {
   background-color: var(--tv-panel) !important;
